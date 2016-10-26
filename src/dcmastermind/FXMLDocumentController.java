@@ -244,18 +244,28 @@ public class FXMLDocumentController implements Initializable {
         ObservableList<Node> boardContent = gameboard.getChildren();
         
         int row = 10;
+        int col = 0;
+//        Node n = gameboard.getChildren().get(0);
+//        boardContent.clear();
+//        gameboard.setGridLinesVisible(true);
+//        boardContent.add(0,n);
+        
         for (Node content : boardContent) {
             if (content instanceof Circle){
+                row--;
+                col--;
                 System.out.println(content);
                 Circle circle = (Circle) content;
+
                 circle.setFill(Color.TRANSPARENT);
                 circle.setStrokeWidth(1);
                 circle.setVisible(false);
-                circle.setDisable(false);          
+                circle.setDisable(false); 
             }else if (content instanceof HBox) {
                 HBox hbox = (HBox) content;
                 hbox.setVisible(false);
-            }         
+            }
+            
         }
 
         gameboard.setDisable(false);
@@ -320,6 +330,7 @@ public class FXMLDocumentController implements Initializable {
             c.setStrokeType(StrokeType.OUTSIDE);
             c.setStroke(Color.BLACK);
             c.setStrokeWidth(1);
+            
             gameboard.add(c, col, rowCount);
             col++;
         }
