@@ -17,6 +17,7 @@ public class Client {
     private int port;
     private MMPacket mmPacket;
     private byte[] clues;
+    private Socket soc;
     
     /**
      * Default contructor, sets ip to localhost.
@@ -176,6 +177,11 @@ public class Client {
     public void createSocket() throws IOException{
         Socket soc = new Socket(server_ip, port);
         mmPacket = new MMPacket(soc);
+        this.soc = soc;
+    }
+    
+    public Socket getSocket(){
+        return soc;
     }
     
     /**

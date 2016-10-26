@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -97,7 +98,7 @@ public class FXMLDocumentController implements Initializable {
     private void handleCloseClick(ActionEvent event) throws IOException {
         System.out.println("Closing socket...");
         mmp.getSocket().close();
-        System.exit(0);
+        Platform.exit();
     }
     
     //Handles the selection of colors for guessing.
@@ -404,5 +405,15 @@ public class FXMLDocumentController implements Initializable {
     //Sets the client
     public void setClient(Client client){     
         this.client = client;
+    }
+    
+    public void closeSocket(){
+        
+        try {
+            mmp.writePacket(new byte[]{0x25,0,0,0});
+            this.mmp.getSocket().close();
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

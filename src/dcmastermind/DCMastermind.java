@@ -3,12 +3,17 @@ package dcmastermind;
 
 import dcmastermindclient.Client;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,7 +23,9 @@ import javax.swing.JOptionPane;
  * @author Rafia Anwar, Evan Glicakis, and Seaim Khan
  */
 public class DCMastermind extends Application {
-    
+    //gent handle on fxmldocumentcontroller to close the client socket on 
+    //stage close.
+    private FXMLDocumentController fxmlD = new FXMLDocumentController();
     /**
      * Starts the UI.
      * 
@@ -46,6 +53,16 @@ public class DCMastermind extends Application {
                 stage.setScene(scene);
                 stage.setResizable(false);
                 stage.show(); 
+                stage.setOnCloseRequest(new EventHandler<WindowEvent>(){
+                    @Override
+                    public void handle(WindowEvent event) {
+                        System.out.println("closing socket...");
+                        
+                        controller.closeSocket();
+                        Platform.exit();
+                    }
+                    
+                });
             }
             else {
                 JOptionPane.showMessageDialog(null,
