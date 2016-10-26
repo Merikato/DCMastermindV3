@@ -131,7 +131,11 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
-    //Handles the game logic for a row after guessing is finalized.
+    /**
+     * 
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void handleGuessClick(ActionEvent event) throws IOException {
         // Checks if the guess is complete before sending to the server.
@@ -183,6 +187,7 @@ public class FXMLDocumentController implements Initializable {
             addCirclesToRow();
         // Reset the guess array after sending it to the server.
         guessArray = new int[4];
+        clues = new byte[4];
         
     }
     

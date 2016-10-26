@@ -27,8 +27,8 @@ public class DCMastermind extends Application {
     @Override
     public void start(Stage stage) {
         //The IP address is the machine's IP
-        String IPAddress = JOptionPane
-                .showInputDialog("Enter the Server IP Address");
+        String IPAddress = "192.168.2.232";//JOptionPane
+                //.showInputDialog("Enter the Server IP Address");
         try{     
             if(isValid(IPAddress)){
                 

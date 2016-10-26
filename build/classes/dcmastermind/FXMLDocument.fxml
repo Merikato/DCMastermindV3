@@ -26,8 +26,7 @@
                 <Menu mnemonicParsing="false" text="Game">
                   <items>
                     <MenuItem fx:id="btnNewGame" mnemonicParsing="false" onAction="#handleNewGameClick" text="New Game" />
-                        <MenuItem fx:id="btnEndGame" mnemonicParsing="false" text="End Game" />
-                        <MenuItem fx:id="btnCloseGame" mnemonicParsing="false" text="Close" />
+                        <MenuItem fx:id="btnCloseGame" mnemonicParsing="false" onAction="#handleCloseClick" text="Close" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
