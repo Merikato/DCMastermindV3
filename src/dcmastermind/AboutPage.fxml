@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcmastermind.PopupController">
+   <children>
+      <Label layoutX="222.0" layoutY="14.0" text="How to Play Mastermind" textAlignment="CENTER">
+         <font>
+            <Font name="Monospaced Regular" size="12.0" />
+         </font>
+      </Label>
+      <TextFlow layoutX="49.0" layoutY="66.0" prefHeight="128.0" prefWidth="504.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="You are the Codebreaker, and you are trying to break the code made by the Codemaker (CPU). The Codemaker creates a pattern of four colors (duplicates are permitted) and you must guess the matching colors in order to crack the code and win the game. You have 10 tries and hints to help you along the way. Hints will be displayed as black or white pegs; black signifies that a color matches in both position and color, whereas white signifies that a color is matching but in the wrong position. You may receive 0 to 4 hints depending on how precise your guesses are." textAlignment="CENTER" wrappingWidth="503.7890625">
+               <font>
+                  <Font name="Monospaced Regular" size="12.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow layoutX="48.0" layoutY="194.0" prefHeight="141.0" prefWidth="504.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The colors you must pick from are on the bottom-right. Click on the color to set it as your current color. Pick the position where you want to place the color on the grid to the left with the row containing empty circles; this row is your guess row. After you click the button below the grid, which is the guess button, you will either move up one grid to guess again, or end the game with either a win if you guessed correctly or a loss if your last guess was wrong. For each guess, you will receive hints on the right-side of the grid with oval shapes." textAlignment="CENTER">
+               <font>
+                  <Font name="Monospaced Regular" size="12.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <Button fx:id="btnCloseHelp" layoutX="255.0" layoutY="335.0" mnemonicParsing="false" onAction="#handleCloseClick" text="Back to Game" />
+      <Label layoutX="136.0" layoutY="29.0" text="By: Rafia Anwar, Evan Glicakis, and Seaim Khan" textAlignment="CENTER">
+         <font>
+            <Font name="Monospaced Regular" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
