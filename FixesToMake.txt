@@ -1,0 +1,3 @@
+Changes to make: Fix "New Game"
+		 Allow the testing feature to be implemented during game and should be on server's end. "Not really working"	 
+		 Show IP address of the client on server.
