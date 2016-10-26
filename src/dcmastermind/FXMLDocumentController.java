@@ -3,7 +3,9 @@ package dcmastermind;
 
 import dcmastermindclient.Client;
 import java.io.IOException;
+import java.net.Inet4Address;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -425,7 +427,11 @@ public class FXMLDocumentController implements Initializable {
             Logger.getLogger(FXMLDocumentController.class.getName())
                     .log(Level.SEVERE, null, ex);
         }
-        IPLabel.setText("Connected to client at: " + client.getSocket().getInetAddress().getHostAddress());
+        try {
+            IPLabel.setText("Connected to client at: " + Inet4Address.getLocalHost().getHostAddress());
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         selected = btnRed;
         currentColor = 2;
         addCirclesToRow();
