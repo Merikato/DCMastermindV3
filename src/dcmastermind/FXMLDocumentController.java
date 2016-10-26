@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -41,6 +42,9 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private Label label;
+    
+    @FXML
+    private Label IPLabel;
 
     @FXML
     private Button btnGuess;
@@ -139,11 +143,19 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void handleGuessClick(ActionEvent event) throws IOException {
+        
+        
         // Checks if the guess is complete before sending to the server.
         for(int i : guessArray){
             if(i == 0){
                 return;
             }
+        }
+        if(client.getIsTest()){
+            
+            answer_set = client.testAnswerSet(guessArray);
+            System.out.println("Answer set: " + Arrays.toString(answer_set));
+            client.setIstest(false);
         }
         // Disable event listener for the current row of colour to avoid user
         // changing them.
@@ -245,7 +257,7 @@ public class FXMLDocumentController implements Initializable {
         
         int row = 10;
         int col = 0;
-//        Node n = gameboard.getChildren().get(0);
+        Node n = gameboard.getChildren().get(0);
 //        boardContent.clear();
 //        gameboard.setGridLinesVisible(true);
 //        boardContent.add(0,n);
@@ -397,17 +409,23 @@ public class FXMLDocumentController implements Initializable {
     public void initializeAll(Client client){
         try{
             this.client = client;
-            client.createSocket();
-            client.startGame();
-            this.mmp = client.getMmPacket();
-            System.out.println("Game Started");
-            selected = btnRed;
-            currentColor = 2;
-            addCirclesToRow();  
+            if(client.getIsTest()){
+                client.createSocket();
+                this.mmp = client.getMmPacket();
+                
+                
+            }else{
+                client.createSocket();
+                client.startGame();
+                this.mmp = client.getMmPacket();
+                System.out.println("Game Started");
+                
+            }
         } catch (IOException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName())
                     .log(Level.SEVERE, null, ex);
         }
+        IPLabel.setText("Connected to client at: " + client.getSocket().getInetAddress().getHostAddress());
         selected = btnRed;
         currentColor = 2;
         addCirclesToRow();

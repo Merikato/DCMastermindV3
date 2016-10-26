@@ -5,6 +5,8 @@ import dcmastermind.MMPacket;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Arrays;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  * Client class that retrieves the IP to connect to, and sends/receives packets 
@@ -18,6 +20,8 @@ public class Client {
     private MMPacket mmPacket;
     private byte[] clues;
     private Socket soc;
+    private boolean isTest;
+    private SimpleStringProperty ipProperty; 
     
     /**
      * Default contructor, sets ip to localhost.
@@ -35,6 +39,7 @@ public class Client {
     public Client(String ip){
         this.server_ip = ip;
         this.port = 50000;
+        ipProperty = new SimpleStringProperty(ip);
     }
     
     /**
@@ -56,6 +61,17 @@ public class Client {
      */
     public String getServer_Ip() {
         return server_ip;
+    }
+    
+    public boolean getIsTest(){
+        return isTest;
+    }
+    public void setIstest(boolean b){
+        this.isTest = b;
+    }
+    
+    public StringProperty ipProperty(){
+        return ipProperty;
     }
 
     /**
@@ -198,6 +214,16 @@ public class Client {
         if(mmPacket.readPacket()[0] == 0x0000000A){
             System.out.println("aOK");
         }
+    }
+    
+    public byte[] testAnswerSet(int[] answer_set)throws IOException{
+        byte[] ans_bytes = new byte[4];
+        for(int i = 0; i < answer_set.length; i++){
+            ans_bytes[i] = convertIntToByte(answer_set[i]); 
+        }
+        mmPacket.writePacket(ans_bytes);
+        byte[] ans = mmPacket.readPacket();
+        return ans;
     }
     
   

@@ -38,8 +38,15 @@ public class DCMastermind extends Application {
                 .showInputDialog("Enter the Server IP Address").trim();
         try{     
             if(isValid(IPAddress)){
+                Client client;
+                if(IPAddress.equalsIgnoreCase("test")){
+                    client = new Client();
+                    client.setIstest(true);
+                }else{
+                  client = new Client(IPAddress);  
+                }
                 
-                Client client = new Client(IPAddress);      
+                      
         
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(this.getClass()
@@ -91,6 +98,8 @@ public class DCMastermind extends Application {
      * @return A boolean representing whether or not the IP address is valid.
      */
     private boolean isValid(String IPAddress) {
+        if(IPAddress.equalsIgnoreCase("test"))
+            return true;
         if(IPAddress == null)
             return false;
         if(IPAddress.isEmpty())

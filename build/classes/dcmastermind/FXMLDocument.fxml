@@ -36,6 +36,7 @@
                 </Menu>
               </menus>
             </MenuBar>
+            <Label fx:id="IPLabel" text="Label" />
         </items>
       </ToolBar>
       <GridPane fx:id="gameboard" alignment="CENTER" gridLinesVisible="true" layoutX="18.0" layoutY="55.0" prefHeight="300.0" prefWidth="243.0">
