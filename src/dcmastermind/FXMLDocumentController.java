@@ -103,7 +103,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleCloseClick(ActionEvent event) throws IOException {
         System.out.println("Closing socket...");
-        mmp.getSocket().close();
+        closeSocket();
         Platform.exit();
     }
     
@@ -265,7 +265,7 @@ public class FXMLDocumentController implements Initializable {
 //        boardContent.add(0,n);
         
         for (Node content : boardContent) {
-            if (content instanceof Circle){
+            if (content instanceof Circle){ //&& GridPane.getRowIndex(content) == row && GridPane.getColumnIndex(content) == col){
                 row--;
                 col--;
                 System.out.println(content);
@@ -274,14 +274,15 @@ public class FXMLDocumentController implements Initializable {
                 circle.setFill(Color.TRANSPARENT);
                 circle.setStrokeWidth(1);
                 circle.setVisible(false);
-                circle.setDisable(false); 
+                circle.setDisable(false);
+//                gameboard.add(circle, col, row);
             }else if (content instanceof HBox) {
                 HBox hbox = (HBox) content;
                 hbox.setVisible(false);
             }
             
         }
-
+//        boardContent.add(0,n);
         gameboard.setDisable(false);
         btnGuess.setDisable(false);
         guessArray = new int[]{0,0,0,0};

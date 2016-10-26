@@ -20,7 +20,7 @@ public class Client {
     private MMPacket mmPacket;
     private byte[] clues;
     private Socket soc;
-    private boolean isTest;
+    private boolean isTest = false;
     private SimpleStringProperty ipProperty; 
     
     /**
